@@ -1,0 +1,9 @@
+<h1>Welcome, {{groupName}} Group!</h1>
+
+<div ng-show='changeName'>
+  <input focus-on ng-model="groupName">
+</div>
+
+<div ng-show='!changeName'>
+  <a ng-click="changeName=true">Change name</a>
+</div>

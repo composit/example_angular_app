@@ -1,0 +1,13 @@
+Search: <input ng-model='query'>
+Sort by:
+<select ng-model='orderProp'>
+  <option value='name'>Alphabetical</option>
+  <option value='joined'>Date Joined</option>
+  <option value='attended'>Meetups Attended</option>
+</select>
+<div class='member' ng-repeat="member in members | filter:query | orderBy:orderProp">
+  <img ng-src="members/{{member.img}}" />
+  <h2><a href='#/members/{{member.id}}'>{{member.name}}</a></h2><br/>
+  Joined: {{member.joined | date}}<br/>
+  Meetups attended: {{member.attended}}<br/>
+</div>

@@ -1,0 +1,118 @@
+Why JS Framework?
+* If you need a dynamic front end
+  * pros
+    * make your interface fast and dynamic
+    * organize your code
+      * familiarity of MVW - decouple the code and separate concerns
+      * unit testability - Angular provides mocking framework
+    * best practices are built in
+  * cons
+    * application logic is split up between the client and the server
+    * multiple languages (unless you're on node)
+    * "best practices" are built in
+
+Why Angular? (vs Ember and Backbone)
+  * different solutions for different devs/domains
+  * in terms of size, opinions and "magic": backbone < angular < ember
+    * ember is the least flexible, backbone is the most
+    * ember is very opinionated. router based. RESTish. Their philosophy is to make 95% of what developers do easier, even if it makes the 5% harder. Gives you less control over what actually happens when a url is accessed. Built by Rails devs.
+    * backbone doesn't give you much. it gives you MVVM-style structure, but doesn't do much to tie things together. It's simple and intuitive, but makes the code you write do all the heavy lifting.
+  * history/communtiy
+    * ember was forked in 2011 from SproutCore (around since 2007) Github: 9704 stars, 832 watches, 2078 forks
+    * backbone was created in 2010. Github: 17462 stars, 1449 watches, 3830 forks
+    * angular was originally created in 2009 (hit 1.0 in 2012). Github: 22059 stars, 2206 watches, 6991 forks
+  * ember and angular have 2 way data binding
+  * "HTML was not designed for dynamic views" - Angular homepage
+    * do not need to manipulate the DOM directly
+      * angular compiler consumes the DOM, not strings. operates on DOM nodes
+      * no need to use "innerHTML" to manipulate HTML strings
+  * DI allows you to build from very little complexity
+  * well documented
+
+# INTRO
+* browser - show home page
+  Logic and data in a controller, which is represented as a view using a template
+* demonstrate 2-way data binding on home page
+
+* terminal - show index.html
+include angular using a script tag
+wrap everything in an "ng-app"
+  sets up basics: $scope and $injector
+  "compiles" the DOM
+  waits for browser events and changes things according to model changes
+use "ng-view"/routes or "ng-controller" to tie DOM elements to a specific controller
+
+# ROUTING
+* terminal - show app.js (routes)
+  use a template html page to hold multiple views without page reloads
+  allows the use of the forward/back browser buttons, bookmarks, etc.
+  use colons in routes to dynamically set $routeParams, e.g. "/phones/:phoneId"
+  default route
+  hashbang, html5
+* browser - show members
+
+# CONTROLLERS
+* terminal - show controllers.js
+  explain scope - glue
+  controller is a constructor function that takes a $scope parameter
+  provides context to set up the data bindings
+  touch on services briefly
+  explain functions and models
+  you can nest controllers. scope is passed down through and can be manipulated by each
+  DI
+  Angular-supplied modules start with $
+  angular automatically loads dependencies of injected services
+
+# VIEWS
+* terminal - show members.html
+  view is a projection of the model through the HTML template
+  directives: ng-repeat
+  double curlies create bindings {{some angular expression}}
+    these double curlies create two-way data bindings. angular watches these and if any state changes, updates the DOM
+    angular expressions are evaluated within the context of the current scope (the context is not global)
+    access model attributes using model.attribute
+    angular expressions are fogiving of null/undefined. a.b.c does nothing if a is undefined.
+    no flow control in angular expressions. all application logic is forced into the controllers. the use of jQuery directly is strongly discouraged.
+    ng-src for image urls
+
+# FILTERS
+  demonstrate built-in filters (filter, orderBy)
+  take some expression (something from the scope) and alter it for display to the user
+  explain pipes
+  filter and orderBy manipulate arrays being displayed
+  date filter in member
+
+* browser - show member-detail
+  demonstrate custom filter (not dynamic)
+
+* terminal - show filters.js
+  explain simple filter, value is piped in
+* terminal - show member-detail.html
+
+# EVENT HANDLING
+  use ng-click to trigger a function defined in the controller
+* terminal - show controllers.js
+
+# SERVICES 
+  used to organize/share code across your app
+  inject them
+* terminal - show services.js
+  can have state
+  create using 'factory' to create the function (lazily loaded - instance created when injected & used) - you can also register services using $provide in the module's config function - useful for testing
+  describe providers breifly
+
+# DIRECTIVES
+* browser - show home
+* terminal - show home.html
+* terminal - show directives.js
+  advanced
+  way to tell angular to attach behavior to DOM elements on compile
+  in my experience, unintuitive. they seem to do things the hard way when jQuery would be simpler.
+
+# TESTING
+  end-to-end test vs unit
+  $controller service retrieves controllers by name, as they are not accessible from global namespace
+
+can seed projects using "angular-seed"
+  libraries, test libraries, scripts and a sample app
+

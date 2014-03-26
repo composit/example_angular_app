@@ -1,0 +1,13 @@
+<img ng-src="members/{{member.img}}" />
+<div ng-hide="reversed">
+  <h2>{{member.name}}</h2>
+</div>
+<div ng-hide="!reversed">
+  <h2>{{member.name | reversify}}</h2>
+</div>
+<a ng-click='reverse()'>reverse</a>
+
+<div>
+  Notify: <input ng-init="message='test'" ng-model="message" >
+  <button ng-click="callNotify(message);">NOTIFY</button>
+</div>
